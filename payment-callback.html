@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Callback - Pesson-Pharmaceuticals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="payment-callback">
+        <h2>Processing Payment</h2>
+        <div class="payment-status">
+            <div class="spinner"></div>
+            <p>Please wait while we process your payment...</p>
+        </div>
+    </div>
+
+    <script src="mtn-momo.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get payment status from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            const status = urlParams.get('status');
+
+            if (orderId && status) {
+                // Check payment status
+                mtnMoMo.checkPaymentStatus(orderId)
+                    .then(response => {
+                        if (response.status === 'SUCCESSFUL') {
+                            // Payment successful
+                            window.location.href = 'payment-success.html';
+                        } else if (response.status === 'FAILED') {
+                            // Payment failed
+                            window.location.href = 'payment-failed.html';
+                        } else {
+                            // Payment pending
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 5000);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Payment status check failed:', error);
+                        window.location.href = 'payment-failed.html';
+                    });
+            } else {
+                // Invalid callback
+                window.location.href = 'payment-failed.html';
+            }
+        });
+    </script>
+</body>
+</html> 
