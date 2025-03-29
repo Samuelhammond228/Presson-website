@@ -3,7 +3,7 @@ class MTNMoMoPayment {
     constructor() {
         this.apiKey = ''; // Your MTN MoMo API Key
         this.userId = ''; // Your MTN MoMo User ID
-        this.primaryKey = ''; // Your MTN MoMo Primary Key
+        this.primaryKey = 'f79422de0bcb4e55b2af1b2b5d2d809c'; // Your MTN MoMo Primary Key
         this.callbackUrl = window.location.origin + '/payment-callback.html';
         this.environment = 'sandbox'; // Change to 'production' for live environment
     }
@@ -15,7 +15,7 @@ class MTNMoMoPayment {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${this.getAuthToken()}`,
-                    'X-Reference-Id': orderId,
+                    'X-Reference-Id': 'cd4dc23d-1453-489e-9dd4-7d1766938f15',
                     'X-Target-Environment': this.environment,
                     'Ocp-Apim-Subscription-Key': this.apiKey,
                     'Content-Type': 'application/json'

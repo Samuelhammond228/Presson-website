@@ -1,0 +1,76 @@
+.mobile-menu-icon {
+  display: none; /* Hidden by default on desktop */
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block;
+    position: relative;
+    margin-left: auto; /* Pushes the icon to the right */
+  }
+
+  .hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hamburger-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333; /* Adjust color as needed */
+    transition: all 0.3s ease;
+  }
+
+  /* Optional: Animation for the menu icon when opened */
+  .hamburger-btn.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-menu li {
+    margin: 15px 0;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+  }
+} 
